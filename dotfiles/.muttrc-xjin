@@ -1,0 +1,59 @@
+# muttrc file
+set realname = "Xiaojun Jin"
+
+set mbox_type = Maildir
+set folder = ~/Mail
+set spoolfile = "+INBOX"
+set record = "+/Sent"
+#unset record
+set postponed = "+/Work In Progress"
+source ~/.mutt/mailboxes
+
+# the smtp sendmail setting
+set sendmail = "/usr/bin/msmtp"
+set use_from = yes
+set from = xjin@suse.com
+set envelope_from = yes
+
+# address book, contacts
+set alias_file = ~/.mutt/alias
+set sort_alias = alias
+source $alias_file
+
+#mail view, edit, forward setting
+set sort = threads
+set sort_aux = reverse-last-date-received
+set auto_tag = yes
+
+set editor = "vim"
+
+#set date_format="%a, %b %d, %Y at %I:%M:%S%p %Z %[%Z]"
+set index_format="!%4C %Z %[%b %d] %-15.15L (%?l?%4l&%4c?) %s"
+set pager_format="-%Z- %C %[!%b %e at %H:%M]  %.20n   %s%*  -- (%P)"
+set forward_format = "fwd: %s"
+set attribution = "On %d, %n wrote: "
+
+
+#color
+source ~/.mutt/colors.linux
+
+##bind keys
+bind	pager	,g	group-reply
+bind	pager	gg	top
+bind	pager	G	bottom
+bind	pager	k	previous-line
+bind	pager	j	next-line
+
+##bind for index
+bind	index	zt	current-top
+bind	index	zz	current-middle
+bind	index	zb	current-bottom
+bind	index	gg	first-entry
+bind	index	G	last-entry
+
+macro index,pager gi "<change-folder>=INBOX<enter><first-entry>" "Go to inbox"
+#use <quote-char> to add space.
+#macro index,pager gs "<change-folder>=Sent<quote-char> Items<enter>" "Go to sent items"
+macro index,pager gs "<change-folder>=Sent<enter>" "Go to sent"
+macro index,pager gb "<change-folder>=bugzilla<enter><first-entry>" "Go to bugzilla"
+macro index,pager gr "<change-folder>=report<enter>" "Go to report"

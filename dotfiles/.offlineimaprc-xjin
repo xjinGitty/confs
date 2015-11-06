@@ -1,0 +1,35 @@
+# Sample minimal config file.  Copy this to ~/.offlineimaprc and edit to
+# get started fast.
+
+[general]
+accounts = Suse
+#ui = quiet
+ui = ttyui
+
+[Account Suse]
+localrepository = Local
+remoterepository = Remote
+autorefresh = 2
+
+[Repository Local]
+type = Maildir
+localfolders = ~/Mail
+
+[Repository Remote]
+type = IMAP
+remotehost = imap.novell.com
+remoteuser = xjin 
+remotepass = yourPASS
+#ssl = yes
+keepalive = 50
+holdconnectionopen = yes
+#folderfilter = lambda folder: folder in ['Cabinet','Calendar','INBOX','meeting','P5','report','Sent','Sent Items','Tasklist','Trash','Work In Progress', 'bugzilla']
+folderfilter = lambda folder: folder in ['INBOX','Sent','Sent Items','Work In Progress' ]
+
+[mbnames]
+enabled = yes
+filename = ~/.mutt/mailboxes
+header = "mailboxes "
+peritem = "+%(accountname)s/%(foldername)s"
+sep = " "
+footer = "\n"
